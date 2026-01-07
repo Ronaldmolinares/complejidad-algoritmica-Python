@@ -10,7 +10,10 @@ def busqueda_lineal(lista, busqueda):
             match = True
             print(f"Iteraciones busqueda lineal: {contador}.")
             break
-    print(f"Realizo {contador} iteraciones y no lo encontro.")
+
+    if not match:
+        print(f"Realizo {contador} iteraciones y no lo encontro.")
+
     return match
 
 

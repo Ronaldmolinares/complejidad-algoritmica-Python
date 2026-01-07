@@ -37,28 +37,54 @@ def busqueda_binaria(lista, busqueda):
     return False
 
 
-def busqueda_binaria_2(lista, comienzo, final, objetivo):
+def busqueda_binaria_2(lista, comienzo, final, objetivo, contador=None):
+    if contador is None:
+        contador = [0]  # Usamos lista para mantener referencia en recursión
+
+    contador[0] += 1
+
     if comienzo >= final:
+        print(f"Realizo {contador[0]} iteraciones y no lo encontro.")
         return False
 
     medio = (comienzo + final) // 2
 
     if lista[medio] == objetivo:
+        print(f"Iteraciones busqueda binaria recursiva: {contador[0]}.")
         return True
     elif lista[medio] < objetivo:
-        return busqueda_binaria_2(lista, medio + 1, final, objetivo)
+        return busqueda_binaria_2(lista, medio + 1, final, objetivo, contador)
     else:
-        return busqueda_binaria_2(lista, comienzo, medio - 1, objetivo)
+        return busqueda_binaria_2(lista, comienzo, medio - 1, objetivo, contador)
+
+
+def busqueda_lineal(lista, busqueda):
+    match = False
+    contador = 0
+    for numero in lista:  # O(n)
+        contador += 1
+        if busqueda == numero:
+            match = True
+            print(f"Iteraciones busqueda lineal: {contador}.")
+            break
+
+    if not match:
+        print(f"Realizo {contador} iteraciones y no lo encontro.")
+
+    return match
 
 
 if __name__ == "__main__":
     tamaño_lista = int(input("Tamaño de la lista: "))
     busqueda = int(input("que numero va a encontrar: "))
 
+    print(":::::::::: COMPARATIVA ::::::::::")
     lista = [random.randint(0, 100) for _ in range(tamaño_lista)]
+    encontrado = busqueda_lineal(lista, busqueda)
     lista.sort()
 
-    encontrado = busqueda_binaria(lista, busqueda)
-    # encontrado = busqueda_binaria_2(lista, 0, len(lista), busqueda)
+    # encontrado = busqueda_binaria(lista, busqueda)
+    encontrado = busqueda_binaria_2(lista, 0, len(lista), busqueda)
+
     print(lista)
     print(f"El elemento objetivo: {busqueda} {'está' if encontrado else 'no está'}")
