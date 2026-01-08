@@ -1,7 +1,7 @@
 import random
 
 
-def burbuja(lista):
+def burbuja(lista):  # Complejidad O(n²)
     n = len(lista)
     intercambios = 0
     for pasada in range(n):
