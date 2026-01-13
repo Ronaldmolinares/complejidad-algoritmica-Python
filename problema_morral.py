@@ -29,6 +29,10 @@ def morral(tamano_morral, pesos, valores, n):
     )
 
 
+"""Cada pieza del conjunto se resuelve aproximadamente dos veces, resultando en una complejidad
+de tiempo exponencial, O(2^n), donde n es el número de objetos. """
+
+
 def morral_verbose(tamano_morral, pesos, valores, n, nivel=0):
     indent = "  " * nivel  # Indentación para visualizar niveles
 
