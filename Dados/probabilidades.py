@@ -11,6 +11,42 @@ def tirar_dado(numero_de_tiros):
     return secuencia_de_tiros
 
 
+def tirar_dados(numero_de_tiros):
+    secuencias_tiros = []
+    for _ in range(numero_de_tiros):
+        dado_1 = random.choice([1, 2, 3, 4, 5, 6])
+        dado_2 = random.choice([1, 2, 3, 4, 5, 6])
+        suma = dado_1 + dado_2
+        secuencias_tiros.append(suma)
+
+    return secuencias_tiros
+
+
+def main2(numero_de_tiros, numero_de_intentos, objetivo):
+    tiros = []
+    for _ in range(numero_de_intentos):
+        secuencia_tiros = tirar_dados(numero_de_tiros)
+        tiros.append(secuencia_tiros)
+
+    print(f"TIROS{tiros}\n")
+
+    todas_las_sumas = []  # Lista simple
+    for _ in range(numero_de_intentos):
+        sumas = tirar_dados(numero_de_tiros)
+        # .extend() "desempaqueta" el iterable y agrega cada elemento por separado.
+        todas_las_sumas.extend(sumas)
+
+    # Contar directamente
+    contador = todas_las_sumas.count(objetivo)
+
+    total_tiros = numero_de_tiros * numero_de_intentos
+    probabilidad_objetivo = contador / total_tiros
+
+    print(
+        f"Probabilidad de obtener un {objetivo} es de {probabilidad_objetivo} lanzando {numero_de_tiros} veces los dados en {numero_de_intentos} intentos."
+    )
+
+
 def main(numero_de_tiros, numero_de_intentos):
     tiros = []  # se guardan los resultados de la simulación
 
@@ -28,7 +64,7 @@ def main(numero_de_tiros, numero_de_intentos):
 
     probabilidad_tiros_con_1 = tiros_con_1 / numero_de_intentos
     print(
-        f"Probabilidad de obtener por lo menos un 1 en {numero_de_tiros} tiros = {probabilidad_tiros_con_1}"
+        f"Probabilidad de obtener por lo menos un 1 lanzando {numero_de_tiros} veces el dado en {numero_de_intentos} intentos es de: {probabilidad_tiros_con_1}"
         # f"Probabilidad de NO obtener por lo menos un 1 en {numero_de_tiros} tiros = {probabilidad_tiros_con_1}"
     )
 
@@ -39,4 +75,7 @@ if __name__ == "__main__":
     # Ejecutar la simulación n cantidad de veces.
     numero_de_intentos = int(input("Cuantas veces correra la simulación: "))
 
-    main(numero_de_tiros, numero_de_intentos)
+    # main(numero_de_tiros, numero_de_intentos)
+
+    objetivo = 5
+    main2(numero_de_tiros, numero_de_intentos, objetivo)
