@@ -36,9 +36,9 @@ class BorrachoContinuo(Borracho):
         """Paso aleatorio con magnitud variable (más realista)"""
         return random.choice(
             [
-                (random.random(), random.random() * -1),  # Cuadrante 4
+                (random.random(), random.random()),  # Cuadrante 1
                 (random.random() * -1, random.random()),  # Cuadrante 2
                 (random.random() * -1, random.random() * -1),  # Cuadrante 3
-                (random.random(), random.random()),  # Cuadrante 1
+                (random.random(), random.random() * -1),  # Cuadrante 4
             ]
         )
