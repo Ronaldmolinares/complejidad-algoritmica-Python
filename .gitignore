@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Archivos HTML generados por Bokeh (excluye Graficado_simple.html)
+Estadistica_Comptacional/*.html
